@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #06040c;
+            color: white;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+
+        /* Header Styles */
+        .header-banner {
+            text-align: center;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            font-size: 0.75rem;
+        }
+
+        .header-main {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .logo {
+            height: 2rem;
+            width: 6rem;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            color: white;
+            background-color: #06040c;
+            border: 1px solid white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.875rem;
+        }
+
+        .btn:hover {
+            background-color: #1f1d2e;
+        }
+
+        .btn-primary {
+            background-color: #5830c4;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #6a3de0;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            margin-top: 2rem;
+            padding-bottom: 10rem;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 42rem;
+        }
+
+        .hero-title {
+            font-size: 1.875rem;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: #d1d5db;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .stats-container {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .stat-card {
+            text-align: left;
+            background-color: #06040c;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 1rem;
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #d1d5db;
+        }
+
+        .hero-badge {
+            display: none;
+        }
+
+        .hero-image {
+            display: none;
+        }
+
+        /* Features Section */
+        .features-section {
+            margin-top: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            height: 3rem;
+            margin: 0 auto;
+        }
+
+        .feature-text {
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        /* Section Header */
+        .section-header {
+            margin-top: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .section-description {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .section-text {
+            font-size: 0.875rem;
+            color: #d1d5db;
+            max-width: 48rem;
+        }
+
+        /* Property Cards */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .property-card {
+            background-color: #0a0814;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            border: 1px solid #374151;
+        }
+
+        .property-image {
+            width: 100%;
+            height: 12rem;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+
+        .property-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .property-description {
+            font-size: 0.875rem;
+            color: #d1d5db;
+            margin-top: 0.5rem;
+        }
+
+        .property-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .property-tag {
+            padding: 0.5rem 1rem;
+            background-color: #06040c;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+        }
+
+        .property-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .property-price-label {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        .property-price {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .btn-small {
+            background-color: #5830c4;
+            border-radius: 0.375rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.75rem;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-small:hover {
+            background-color: #6a3de0;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: #0a0814;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border: 1px solid #374151;
+        }
+
+        .testimonial-stars {
+            height: 1.5rem;
+            width: 8rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .testimonial-text {
+            font-size: 0.875rem;
+            color: #d1d5db;
+            margin-top: 0.75rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .author-image {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 9999px;
+        }
+
+        .author-info {
+            margin-left: 0.75rem;
+        }
+
+        .author-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .author-location {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        /* FAQ Section */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .faq-card {
+            background-color: #0a0814;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border: 1px solid #374151;
+        }
+
+        .faq-question {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            font-size: 0.875rem;
+            color: #d1d5db;
+            margin-top: 0.75rem;
+        }
+
+        .btn-faq {
+            background-color: #06040c;
+            border-radius: 0.375rem;
+            border: 1px solid white;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-faq:hover {
+            background-color: #1f1d2e;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            margin-top: 4rem;
+            background-color: #0a0814;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border: 1px solid #374151;
+        }
+
+        .cta-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .cta-text {
+            max-width: 48rem;
+        }
+
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .cta-description {
+            font-size: 0.875rem;
+            color: #d1d5db;
+            margin-top: 1rem;
+        }
+
+        .btn-cta {
+            background-color: #5830c4;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background-color 0.3s;
+        }
+
+        .btn-cta:hover {
+            background-color: #6a3de0;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding-bottom: 2.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .footer-logo-section {
+            grid-column: span 1;
+        }
+
+        .footer-logo {
+            height: 2.5rem;
+            width: 8rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-input {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            background-color: #06040c;
+            border: 1px solid white;
+            color: white;
+            width: 100%;
+            max-width: 20rem;
+            outline: none;
+        }
+
+        .footer-input:focus {
+            outline: 2px solid #5830c4;
+        }
+
+        .footer-section-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .footer-link {
+            display: block;
+            font-size: 0.75rem;
+            color: #d1d5db;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        /* Media Queries */
+        @media (min-width: 640px) {
+            body {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .header-banner {
+                font-size: 0.875rem;
+            }
+
+            .header-main {
+                flex-direction: row;
+            }
+
+            .logo {
+                height: 2.5rem;
+                width: 8rem;
+            }
+
+            .nav {
+                gap: 1.5rem;
+            }
+
+            .btn {
+                font-size: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2.25rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: row;
+            }
+
+            .stats-container {
+                flex-direction: row;
+            }
+
+            .stat-number {
+                font-size: 1.875rem;
+            }
+
+            .stat-label {
+                font-size: 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .feature-text {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.875rem;
+            }
+
+            .section-text {
+                font-size: 1rem;
+            }
+
+            .property-image {
+                height: 13rem;
+            }
+
+            .property-title {
+                font-size: 1.25rem;
+            }
+
+            .property-description {
+                font-size: 1rem;
+            }
+
+            .property-tag {
+                font-size: 0.875rem;
+            }
+
+            .property-price-label {
+                font-size: 0.875rem;
+            }
+
+            .property-price {
+                font-size: 1.5rem;
+            }
+
+            .btn-small {
+                font-size: 0.875rem;
+            }
+
+            .testimonial-title {
+                font-size: 1.25rem;
+            }
+
+            .testimonial-text {
+                font-size: 1rem;
+            }
+
+            .author-image {
+                width: 4rem;
+                height: 4rem;
+            }
+
+            .author-name {
+                font-size: 1rem;
+            }
+
+            .author-location {
+                font-size: 0.875rem;
+            }
+
+            .faq-question {
+                font-size: 1.25rem;
+            }
+
+            .faq-answer {
+                font-size: 1rem;
+            }
+
+            .cta-title {
+                font-size: 1.875rem;
+            }
+
+            .cta-description {
+                font-size: 1rem;
+            }
+
+            .btn-cta {
+                font-size: 1rem;
+            }
+
+            .footer-logo {
+                height: 3rem;
+                width: 10rem;
+            }
+
+            .footer-section-title {
+                font-size: 1rem;
+            }
+
+            .footer-link {
+                font-size: 0.875rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .header-banner {
+                font-size: 1rem;
+            }
+
+            .hero-section {
+                margin-top: 3rem;
+                padding-bottom: 15rem;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+
+            .hero-buttons {
+                margin-top: 2.5rem;
+            }
+
+            .stats-container {
+                margin-top: 2rem;
+                gap: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2.25rem;
+            }
+
+            .features-section {
+                margin-top: 5rem;
+            }
+
+            .features-grid {
+                gap: 2rem;
+            }
+
+            .feature-icon {
+                height: 4rem;
+            }
+
+            .section-header {
+                margin-top: 6rem;
+            }
+
+            .section-title {
+                font-size: 2.25rem;
+            }
+
+            .properties-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .faq-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .cta-section {
+                margin-top: 6rem;
+                padding: 2.5rem;
+            }
+
+            .footer {
+                margin-top: 6rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            body {
+                padding-left: 2.5rem;
+                padding-right: 2.5rem;
+            }
+
+            .nav {
+                gap: 2.5rem;
+            }
+
+            .hero-section {
+                margin-top: 5rem;
+                padding-bottom: 20rem;
+            }
+
+            .hero-title {
+                font-size: 3.75rem;
+            }
+
+            .hero-badge {
+                display: block;
+                position: absolute;
+                right: 2.5rem;
+                top: 2rem;
+            }
+
+            .hero-badge img {
+                height: 5rem;
+            }
+
+            .hero-image {
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+            .hero-image img {
+                height: 24rem;
+                width: auto;
+                max-width: 42rem;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .section-description {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .properties-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .faq-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .cta-content {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .footer-logo-section {
+                grid-column: span 2;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+
+            .hero-badge img {
+                height: 6rem;
+            }
+
+            .hero-image img {
+                height: 37.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-banner">
+            <h3>Discover Your Dream Property with Estatien Learn More</h3>
+        </div>
+        <div class="header-main">
+            <img src="/inputs/Logo.png" alt="Logo" class="logo">
+            <nav class="nav">
+                <button class="btn">Home</button>
+                <button class="btn">About Us</button>
+                <button class="btn">Properties</button>
+                <button class="btn">Services</button>
+            </nav>
+            <button class="btn">Contact Us</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div>
+                <h1 class="hero-title">Discover Your Dream <br class="hidden sm:block"> Property with Estatien</h1>
+                <p class="hero-subtitle">Your journey to finding the perfect property begins here. Explore our listing to find the <br class="hidden md:block">home that matches your dream.</p>
+            </div>
+            <div class="hero-buttons">
+                <button class="btn">Learn More</button>
+                <button class="btn btn-primary">Browse Properties</button>
+            </div>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h2 class="stat-number">200+</h2>
+                    <p class="stat-label">Happy Customers</p>
+                </div>
+                <div class="stat-card">
+                    <h2 class="stat-number">10k+</h2>
+                    <p class="stat-label">Properties For Clients</p>
+                </div>
+                <div class="stat-card">
+                    <h2 class="stat-number">16+</h2>
+                    <p class="stat-label">Years of Experience</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-badge">
+            <img src="/inputs/Sub Container.png" alt="Badge">
+        </div>
+        <div class="hero-image">
+            <img src="/inputs/Image.png" alt="Hero">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feature-item">
+                <img src="/inputs/Icon Container.png" alt="Icon" class="feature-icon">
+                <p class="feature-text">Find Your Dream Home</p>
+            </div>
+            <div class="feature-item">
+                <img src="/inputs/Icon Container.png" alt="Icon" class="feature-icon">
+                <p class="feature-text">Unlock Property Value</p>
+            </div>
+            <div class="feature-item">
+                <img src="/inputs/Icon Container.png" alt="Icon" class="feature-icon">
+                <p class="feature-text">Effortless Property Management</p>
+            </div>
+            <div class="feature-item">
+                <img src="/inputs/Icon Container.png" alt="Icon" class="feature-icon">
+                <p class="feature-text">Smart Investments, Informed Decisions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties Section -->
+    <section class="section-header">
+        <h2 class="section-title">Featured Properties</h2>
+        <div class="section-description">
+            <p class="section-text">Explore our handpicked selection of featured properties. Each listing offers a glimpse into exceptional homes and Investments available through Estatein. Click "View Details" for more information.</p>
+            <button class="btn">View All Properties</button>
+        </div>
+        
+        <div class="properties-grid">
+            <!-- Property Card 1 -->
+            <div class="property-card">
+                <img src="/inputs/Image (1).png" alt="Property" class="property-image">
+                <h3 class="property-title">Seaside Serenity Villa</h3>
+                <p class="property-description">A Stunning 4-bedroom, 3-bedroom villa in a peaceful suburban neighbourhood.</p>
+                <div class="property-tags">
+                    <span class="property-tag">4-Bedroom</span>
+                    <span class="property-tag">3-Bathroom</span>
+                    <span class="property-tag">Villa</span>
+                </div>
+                <div class="property-footer">
+                    <div>
+                        <p class="property-price-label">Price</p>
+                        <h3 class="property-price">$550,000</h3>
+                    </div>
+                    <button class="btn-small">View Property Details</button>
+                </div>
+            </div>
+
+            <!-- Property Card 2 -->
+            <div class="property-card">
+                <img src="/inputs/Image (2).png" alt="Property" class="property-image">
+                <h3 class="property-title">Metropolitan Haven</h3>
+                <p class="property-description">A chic and fully-furnished 2-bedroom apartment with panoramic city views</p>
+                <div class="property-tags">
+                    <span class="property-tag">2-Bedroom</span>
+                    <span class="property-tag">2-Bathroom</span>
+                    <span class="property-tag">Apartment</span>
+                </div>
+                <div class="property-footer">
+                    <div>
+                        <p class="property-price-label">Price</p>
+                        <h3 class="property-price">$550,000</h3>
+                    </div>
+                    <button class="btn-small">View Property Details</button>
+                </div>
+            </div>
+
+            <!-- Property Card 3 -->
+            <div class="property-card">
+                <img src="/inputs/Image (3).png" alt="Property" class="property-image">
+                <h3 class="property-title">Rustic Retreat Cottage</h3>
+                <p class="property-description">An elegant 3-bedroom, 2.5-bathroom townhouse in a gated community</p>
+                <div class="property-tags">
+                    <span class="property-tag">3-Bedroom</span>
+                    <span class="property-tag">2-Bathroom</span>
+                    <span class="property-tag">Villa</span>
+                </div>
+                <div class="property-footer">
+                    <div>
+                        <p class="property-price-label">Price</p>
+                        <h3 class="property-price">$550,000</h3>
+                    </div>
+                    <button class="btn-small">View Property Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-header">
+        <div>
+            <h2 class="section-title">What Our Client Say</h2>
+            <div class="section-description">
+                <p class="section-text">Read the success stories and heartfelt testimonials from our valued clients. Discover why they choose Estatein for their estate needs</p>
+                <button class="btn">View All Testimonials</button>
+            </div>
+        </div>
+        <div class="testimonials-grid">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+                <img src="/inputs/Container.png" alt="Stars" class="testimonial-stars">
+                <h4 class="testimonial-title">Exceptional Services!</h4>
+                <p class="testimonial-text">Our Experience with Estatein was outstanding. Their team's dedication and professionalism made finding our home a breeze. Highly Recommended!</p>
+                <div class="testimonial-author">
+                    <img src="/inputs/Profile.png" alt="Profile" class="author-image">
+                    <div class="author-info">
+                        <p class="author-name">Wade Warren</p>
+                        <p class="author-location">USA, California.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+                <img src="/inputs/Container.png" alt="Stars" class="testimonial-stars">
+                <h4 class="testimonial-title">Efficient and Reliable.</h4>
+                <p class="testimonial-text">Estatein provided us with top notch services. They helped us sell our property quickly and at a great price. We couldn't be happier than the result.</p>
+                <div class="testimonial-author">
+                    <img src="/inputs/Profile (1).png" alt="Profile" class="author-image">
+                    <div class="author-info">
+                        <p class="author-name">Emelle Thompson</p>
+                        <p class="author-location">USA, Florida.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+                <img src="/inputs/Container.png" alt="Stars" class="testimonial-stars">
+                <h4 class="testimonial-title">Trusted Advisors</h4>
+                <p class="testimonial-text">The Estatein team guided us through the entire buying process. Their knowledge and commitment to our needs were impressive. Thank you for your support!</p>
+                <div class="testimonial-author">
+                    <img src="/inputs/Profile (2).png" alt="Profile" class="author-image">
+                    <div class="author-info">
+                        <p class="author-name">John Mans</p>
+                        <p class="author-location">USA, Nevada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-header">
+        <div>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="section-description">
+                <p class="section-text">Find answers to common questions about Estatein Services, property listing and the real estate process. We are here to provide clarity and assist your every step of the way.</p>
+                <button class="btn">See all FAQs</button>
+            </div>
+        </div>
+        <div class="faq-grid">
+            <!-- FAQ 1 -->
+            <div class="faq-card">
+                <h3 class="faq-question">How do I search properties on Estatein?</h3>
+                <p class="faq-answer">Learn how to use our user-friendly search tools to find properties that matches your criteria.</p>
+                <button class="btn-faq">Read More</button>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-card">
+                <h3 class="faq-question">What Documents do I need to sell my properties on Estatein?</h3>
+                <p class="faq-answer">Find out all necessary documentation for listing your property with us.</p>
+                <button class="btn-faq">Read More</button>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-card">
+                <h3 class="faq-question">How do I contact Estatein Agent?</h3>
+                <p class="faq-answer">Discover the different ways you can get in touch with our experienced agent.</p>
+                <button class="btn-faq">Read More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <div class="cta-text">
+                <h2 class="cta-title">Start Your Real Estate Journey Today.</h2>
+                <p class="cta-description">Your dream property is just a click away. Whether you are looking for a new home, a strategic investment or expert real estate advice, Estatein is here to assist you every step of the way. Take the first step towards your real estate and explore our available properties or get in touch with our team for personalized assistance.</p>
+            </div>
+            <button class="btn-cta">Explore Properties</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-logo-section">
+                <img src="/inputs/Logo.png" alt="Logo" class="footer-logo">
+                <input type="email" placeholder="Enter Your Email" class="footer-input">
+            </div>
+            <div>
+                <h4 class="footer-section-title">Home</h4>
+                <a href="#" class="footer-link">Hero Section</a>
+                <a href="#" class="footer-link">Features</a>
+                <a href="#" class="footer-link">Properties</a>
+                <a href="#" class="footer-link">Testimonials</a>
+                <a href="#" class="footer-link">FAQs</a>
+            </div>
+            <div>
+                <h4 class="footer-section-title">About Us</h4>
+                <a href="#" class="footer-link">Our Story</a>
+                <a href="#" class="footer-link">Our Works</a>
+                <a href="#" class="footer-link">How it Works</a>
+                <a href="#" class="footer-link">Our Teams</a>
+                <a href="#" class="footer-link">Our Clients</a>
+            </div>
+            <div>
+                <h4 class="footer-section-title">Properties</h4>
+                <a href="#" class="footer-link">Portfolio</a>
+                <a href="#" class="footer-link">Categories</a>
+            </div>
+            <div>
+                <h4 class="footer-section-title">Services</h4>
+                <a href="#" class="footer-link">Valuation Mastery</a>
+                <a href="#" class="footer-link">Strategic Marketing</a>
+                <a href="#" class="footer-link">Negotiation Wizardry</a>
+                <a href="#" class="footer-link">Closing Success</a>
+                <a href="#" class="footer-link">Property Management</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
